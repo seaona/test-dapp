@@ -31,6 +31,57 @@
       </header>
       <section>
         <h3 class="card-title">
+          Provider
+        </h3>
+        <div id="eip6963Warning" class="row justify-content-center">
+          <div class="warning-message justify-content-center col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+            <img
+              src="warning.svg"
+              alt=""
+              class="warning-message-icon
+              "
+            />
+            <div class="warning-message-text">No EIP-6963 Provider Detected</div>
+          </div>
+        </div>
+        <div class="row" id="eip6963" hidden>
+          <div class="col-xl-8 col-lg-6 col-md-12 col-sm-12 col-12">
+            <div class="card eip6963-providers">
+              <div class="card-body">
+                <h4 class="card-title">
+                  EIP 6963
+                </h4>
+                  <div class='row' id="providers">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">
+                  Active Provider
+                </h4>
+                <p class="info-text alert alert-secondary">
+                  UUID: <span id="activeProviderUUID"></span>
+                </p>
+                <p class="info-text alert alert-secondary">
+                  Name: <span id="activeProviderName"></span>
+                </p>
+                <p class="info-text alert alert-secondary">
+                  Icon: <span id="activeProviderIcon"></span>
+                </p>
+              </div>
+            </div>
+              <button
+              class="btn btn-primary btn-lg btn-block mb-3"
+              id="useWindowProviderButton"
+            >
+              Use window.ethereum
+          </div>
+      </section>
+      <section>
+        <h3 class="card-title">
           Status
         </h3>
         <div id="warning" class="row justify-content-center error-div">
@@ -253,7 +304,7 @@
                 </h4>
 
                 <p class="info-text alert alert-success">
-                  Token: <span id="tokenAddress"></span>
+                  Token(s): <span id="tokenAddresses"></span>
                 </p>
 
                 <div class="form-group">
@@ -278,10 +329,10 @@
 
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
-                  id="watchAsset"
+                  id="watchAssets"
                   disabled
                 >
-                  Add Token to Wallet
+                  Add Token(s) to Wallet
                 </button>
 
                 <button
@@ -292,6 +343,15 @@
                   Transfer Tokens
                 </button>
 
+                <div class="form-group">
+                  <label>Approve to Address</label>
+                  <input
+                    class="form-control"
+                    id="approveTo"
+                    value="0x9bc5baF874d2DA8D216aE9f137804184EE5AfEF4"
+                  />
+                </div>
+
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="approveTokens"
@@ -300,6 +360,28 @@
                   Approve Tokens
                 </button>
 
+                <div class="form-group">
+                  <label>Sender</label>
+                  <input
+                    class="form-control"
+                    id="senderInput"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>Recipient</label>
+                  <input
+                    class="form-control"
+                    id="recipientInput"
+                  />
+                </div>
+                <button
+                  class="btn btn-primary btn-lg btn-block mb-3"
+                  id="transferFromTokens"
+                  disabled
+                >
+                  Transfer From Tokens
+                </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="transferTokensWithoutGas"
@@ -633,17 +715,24 @@
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
-                  id="maliciousTransferButton"
+                  id="maliciousERC20TransferButton"
                   disabled
                 >
-                  Malicious ERC20 Transfer
+                  Malicious ERC20 Transfer (USDC)
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="maliciousApprovalButton"
                   disabled
                 >
-                  Malicious ERC20 Approval
+                  Malicious ERC20 Approval (BUSD)
+                </button>
+                <button
+                  class="btn btn-primary btn-lg btn-block mb-3"
+                  id="maliciousSetApprovalForAll"
+                  disabled
+                >
+                  Malicious Set Approval For All
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
