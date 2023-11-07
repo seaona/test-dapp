@@ -1,4 +1,5 @@
 import MetaMaskOnboarding from '@metamask/onboarding';
+import { createWeb3Modal, defaultConfig } from '@web3modal/ethers5';
 // eslint-disable-next-line camelcase
 import {
   encrypt,
@@ -138,15 +139,11 @@ const sendEIP1559Button = document.getElementById('sendEIP1559Button');
 
 // Send Tokens Section
 const decimalUnitsInput = document.getElementById('tokenDecimals');
-const approveToInput = document.getElementById('approveTo');
-const senderInput = document.getElementById('senderInput');
-const recipientInput = document.getElementById('recipientInput');
 const tokenSymbol = 'TST';
 const tokenAddresses = document.getElementById('tokenAddresses');
 const createToken = document.getElementById('createToken');
 const watchAssets = document.getElementById('watchAssets');
 const transferTokens = document.getElementById('transferTokens');
-const transferFromTokens = document.getElementById('transferFromTokens');
 const approveTokens = document.getElementById('approveTokens');
 const transferTokensWithoutGas = document.getElementById(
   'transferTokensWithoutGas',
@@ -246,71 +243,7 @@ const maliciousSetApprovalForAll = document.getElementById(
 );
 
 // Buttons that require connecting an account
-const allConnectedButtons = [
-  deployButton,
-  depositButton,
-  withdrawButton,
-  deployNFTsButton,
-  mintButton,
-  mintAmountInput,
-  approveTokenInput,
-  approveButton,
-  watchNFTInput,
-  watchNFTButton,
-  setApprovalForAllButton,
-  revokeButton,
-  transferTokenInput,
-  transferFromButton,
-  watchNFTsButton,
-  deployERC1155Button,
-  batchTransferTokenIds,
-  batchTransferTokenAmounts,
-  batchTransferFromButton,
-  setApprovalForAllERC1155Button,
-  revokeERC1155Button,
-  deployFailingButton,
-  sendFailingButton,
-  deployMultisigButton,
-  sendMultisigButton,
-  sendButton,
-  createToken,
-  decimalUnitsInput,
-  approveToInput,
-  watchAssets,
-  transferTokens,
-  transferFromTokens,
-  approveTokens,
-  transferTokensWithoutGas,
-  approveTokensWithoutGas,
-  getEncryptionKeyButton,
-  encryptMessageInput,
-  encryptButton,
-  decryptButton,
-  ethSign,
-  personalSign,
-  personalSignVerify,
-  signTypedData,
-  signTypedDataVerify,
-  signTypedDataV3,
-  signTypedDataV3Verify,
-  signTypedDataV4,
-  signTypedDataV4Verify,
-  signPermit,
-  signPermitVerify,
-  siwe,
-  siweResources,
-  siweBadDomain,
-  siweBadAccount,
-  siweMalformed,
-  eip747WatchButton,
-  maliciousApprovalButton,
-  maliciousSetApprovalForAll,
-  maliciousERC20TransferButton,
-  maliciousRawEthButton,
-  maliciousPermit,
-  maliciousTradeOrder,
-  maliciousSeaport,
-];
+const allConnectedButtons = [];
 
 // Buttons that are available after initially connecting an account
 const initialConnectedButtons = [
@@ -322,7 +255,6 @@ const initialConnectedButtons = [
   deployMultisigButton,
   createToken,
   decimalUnitsInput,
-  approveToInput,
   personalSign,
   signTypedData,
   getEncryptionKeyButton,
@@ -360,6 +292,47 @@ const isMetaMaskConnected = () => accounts && accounts.length > 0;
 
 // TODO: Need to align with @metamask/onboarding
 const isMetaMaskInstalled = () => provider && provider.isMetaMask;
+
+// test id
+const projectId = 'e6360eaee594162688065f1c70c863b7';
+
+const mainnet = {
+  chainId: 1,
+  name: 'Ethereum',
+  currency: 'ETH',
+  explorerUrl: 'https://etherscan.io',
+  rpcUrl: 'https://cloudflare-eth.com',
+};
+
+const metadata = {
+  name: 'E2e Test Dapp',
+  description: 'This is the E2e Test Dapp',
+  url: 'https://metamask.github.io/test-dapp/',
+  icons: ['https://avatars.mywebsite.com/'],
+};
+
+const modal = createWeb3Modal({
+  ethersConfig: defaultConfig({ metadata }),
+  chains: [mainnet],
+  projectId,
+});
+
+const openConnectModalBtn = document.getElementById('open-connect-modal');
+
+openConnectModalBtn.onclick = async () => {
+  modal.open();
+  provider = modal.getWalletProvider().provider;
+  try {
+    const newAccounts = await provider.request({
+      method: 'eth_accounts',
+    });
+    handleNewAccounts(newAccounts);
+  } catch (err) {
+    console.error('Error on init when getting accounts', err);
+  }
+  handleNewProviderDetail(provider);
+  setActiveProviderDetail(provider);
+};
 
 const detectEip6963 = () => {
   window.addEventListener('eip6963:announceProvider', (event) => {
@@ -813,7 +786,6 @@ const updateContractElements = () => {
     tokenAddresses.innerHTML = hstContract ? hstContract.address : '';
     watchAssets.disabled = false;
     transferTokens.disabled = false;
-    transferFromTokens.disabled = false;
     approveTokens.disabled = false;
     transferTokensWithoutGas.disabled = false;
     approveTokensWithoutGas.disabled = false;
@@ -1047,7 +1019,7 @@ const initializeFormElements = () => {
   watchNFTButton.onclick = async () => {
     let watchNftsResult;
     try {
-      watchNftsResult = await ethereum.request({
+      watchNftsResult = await provider.request({
         method: 'wallet_watchAsset',
         params: {
           type: 'ERC721',
@@ -1261,7 +1233,7 @@ const initializeFormElements = () => {
 
   // Malicious ERC20 Approval
   maliciousApprovalButton.onclick = async () => {
-    const result = await ethereum.request({
+    const result = await provider.request({
       method: 'eth_sendTransaction',
       params: [
         {
@@ -1278,7 +1250,7 @@ const initializeFormElements = () => {
 
   // Malicious ERC20 transfer
   maliciousERC20TransferButton.onclick = async () => {
-    const result = await ethereum.request({
+    const result = await provider.request({
       method: 'eth_sendTransaction',
       params: [
         {
@@ -1295,7 +1267,7 @@ const initializeFormElements = () => {
 
   // Malicious raw ETH transfer
   maliciousRawEthButton.onclick = async () => {
-    const result = await ethereum.request({
+    const result = await provider.request({
       method: 'eth_sendTransaction',
       params: [
         {
@@ -1310,7 +1282,7 @@ const initializeFormElements = () => {
 
   // Malicious permit
   maliciousPermit.onclick = async () => {
-    const result = await ethereum.request({
+    const result = await provider.request({
       method: 'eth_signTypedData_v4',
       params: [
         accounts[0],
@@ -1322,7 +1294,7 @@ const initializeFormElements = () => {
 
   // Malicious trade order
   maliciousTradeOrder.onclick = async () => {
-    const result = await ethereum.request({
+    const result = await provider.request({
       method: 'eth_signTypedData_v4',
       params: [
         accounts[0],
@@ -1334,7 +1306,7 @@ const initializeFormElements = () => {
 
   // Malicious Seaport
   maliciousSeaport.onclick = async () => {
-    const result = await ethereum.request({
+    const result = await provider.request({
       method: 'eth_signTypedData_v4',
       params: [
         accounts[0],
@@ -1346,7 +1318,7 @@ const initializeFormElements = () => {
 
   // Malicious Set Approval For All
   maliciousSetApprovalForAll.onclick = async () => {
-    const result = await ethereum.request({
+    const result = await provider.request({
       method: 'eth_sendTransaction',
       params: [
         {
@@ -1432,7 +1404,6 @@ const initializeFormElements = () => {
       .join(', ');
     watchAssets.disabled = false;
     transferTokens.disabled = false;
-    transferFromTokens.disabled = false;
     approveTokens.disabled = false;
     transferTokensWithoutGas.disabled = false;
     approveTokensWithoutGas.disabled = false;
@@ -1442,7 +1413,7 @@ const initializeFormElements = () => {
     const contractAddresses = tokenAddresses.innerHTML.split(', ');
 
     const promises = contractAddresses.map((erc20Address) => {
-      return ethereum.request({
+      return provider.request({
         method: 'wallet_watchAsset',
         params: {
           type: 'ERC20',
@@ -1478,24 +1449,8 @@ const initializeFormElements = () => {
 
   approveTokens.onclick = async () => {
     const result = await hstContract.approve(
-      approveToInput.value,
+      '0x9bc5baF874d2DA8D216aE9f137804184EE5AfEF4',
       `${7 * 10 ** decimalUnitsInput.value}`,
-      {
-        from: accounts[0],
-        gasLimit: 60000,
-        gasPrice: '20000000000',
-      },
-    );
-    console.log('result', result);
-  };
-
-  transferFromTokens.onclick = async () => {
-    const result = await hstContract.transferFrom(
-      senderInput.value,
-      recipientInput.value,
-      decimalUnitsInput.value === '0'
-        ? 1
-        : `${1.5 * 10 ** decimalUnitsInput.value}`,
       {
         from: accounts[0],
         gasLimit: 60000,

@@ -128,11 +128,17 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="connectButton"
-                  disabled
+                  enabled
                 >
                   Connect
                 </button>
 
+                <button
+                  class="btn btn-primary btn-lg btn-block mb-3"
+                  id="open-connect-modal"
+                >
+                Wallet Connect Modal
+                </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="getAccounts"
@@ -195,7 +201,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="sendButton"
-                  disabled
+                  enabled
                 >
                   Send
                 </button>
@@ -203,8 +209,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="sendEIP1559Button"
-                  disabled
-                  hidden
+
                 >
                   Send EIP 1559 Transaction
                 </button>
@@ -216,7 +221,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="deployButton"
-                  disabled
+                  enabled
                 >
                   Deploy Contract
                 </button>
@@ -224,7 +229,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="depositButton"
-                  disabled
+                  enabled
                 >
                   Deposit
                 </button>
@@ -232,7 +237,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="withdrawButton"
-                  disabled
+                  enabled
                 >
                   Withdraw
                 </button>
@@ -248,7 +253,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="deployFailingButton"
-                  disabled
+                  enabled
 
                 >
                   Deploy Failing Contract
@@ -257,7 +262,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="sendFailingButton"
-                  disabled
+                  enabled
                 >
                   Send Failing Transaction
                 </button>
@@ -273,7 +278,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="deployMultisigButton"
-                  disabled
+                  enabled
 
                 >
                   Deploy Multisig Contract
@@ -282,7 +287,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="sendMultisigButton"
-                  disabled
+                  enabled
                 >
                   Send ETH to Multisig Address
                 </button>
@@ -322,7 +327,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="createToken"
-                  disabled
+                  enabled
                 >
                   Create Token
                 </button>
@@ -330,7 +335,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="watchAssets"
-                  disabled
+                  enabled
                 >
                   Add Token(s) to Wallet
                 </button>
@@ -338,54 +343,23 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="transferTokens"
-                  disabled
+                  enabled
                 >
                   Transfer Tokens
                 </button>
 
-                <div class="form-group">
-                  <label>Approve to Address</label>
-                  <input
-                    class="form-control"
-                    id="approveTo"
-                    value="0x9bc5baF874d2DA8D216aE9f137804184EE5AfEF4"
-                  />
-                </div>
-
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="approveTokens"
-                  disabled
+                  enabled
                 >
                   Approve Tokens
                 </button>
 
-                <div class="form-group">
-                  <label>Sender</label>
-                  <input
-                    class="form-control"
-                    id="senderInput"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>Recipient</label>
-                  <input
-                    class="form-control"
-                    id="recipientInput"
-                  />
-                </div>
-                <button
-                  class="btn btn-primary btn-lg btn-block mb-3"
-                  id="transferFromTokens"
-                  disabled
-                >
-                  Transfer From Tokens
-                </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="transferTokensWithoutGas"
-                  disabled
+                  enabled
                 >
                   Transfer Tokens Without Gas
                 </button>
@@ -393,7 +367,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="approveTokensWithoutGas"
-                  disabled
+                  enabled
                 >
                   Approve Tokens Without Gas
                 </button>
@@ -412,7 +386,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="deployNFTsButton"
-                  disabled
+                  enabled
                 >
                   Deploy
                 </button>
@@ -431,7 +405,7 @@
                   <button
                     class="btn btn-primary btn-lg btn-block mb-3"
                     id="mintButton"
-                    disabled
+                    enabled
                   >
                     Mint
                   </button>
@@ -451,7 +425,7 @@
                   <button
                     class="btn btn-primary btn-lg btn-block mb-3"
                     id="watchNFTButton"
-                    disabled
+                    enabled
                   >
                     Watch NFT
                   </button>
@@ -461,7 +435,7 @@
                   <button
                     class="btn btn-primary btn-lg btn-block mb-3"
                     id="watchNFTsButton"
-                    disabled
+                    enabled
                   >
                     Watch all NFTs
                   </button>
@@ -484,7 +458,7 @@
                   <button
                     class="btn btn-primary btn-lg btn-block mb-3"
                     id="approveButton"
-                    disabled
+                    enabled
                   >
                     Approve
                   </button>
@@ -494,7 +468,7 @@
                   <button
                     class="btn btn-primary btn-lg btn-block mb-3"
                     id="setApprovalForAllButton"
-                    disabled
+                    enabled
                   >
                     Set Approval For All
                   </button>
@@ -504,7 +478,7 @@
                   <button
                     class="btn btn-primary btn-lg btn-block mb-3"
                     id="revokeButton"
-                    disabled
+                    enabled
                   >
                     Revoke
                   </button>
@@ -524,7 +498,7 @@
                   <button
                     class="btn btn-primary btn-lg btn-block mb-3"
                     id="transferFromButton"
-                    disabled
+                    enabled
                   >
                     Transfer From
                   </button>
@@ -548,7 +522,7 @@
               <button
               class="btn btn-primary btn-lg btn-block mb-3"
               id="deployERC1155Button"
-              disabled
+              enabled
             >
               Deploy
             </button>
@@ -577,7 +551,7 @@
               <button
                 class="btn btn-primary btn-lg btn-block mb-3"
                 id="batchMintButton"
-                disabled
+                enabled
               >
                 Batch Mint
               </button>
@@ -607,7 +581,7 @@
               <button
                 class="btn btn-primary btn-lg btn-block mb-3"
                 id="batchTransferFromButton"
-                disabled
+                enabled
               >
                 Batch Transfer
               </button>
@@ -617,7 +591,7 @@
               <button
                 class="btn btn-primary btn-lg btn-block mb-3"
                 id="setApprovalForAllERC1155Button"
-                disabled
+                enabled
               >
                 Set Approval For All
               </button>
@@ -627,7 +601,7 @@
               <button
                 class="btn btn-primary btn-lg btn-block mb-3"
                 id="revokeERC1155Button"
-                disabled
+                enabled
               >
                 Revoke
               </button>
@@ -682,7 +656,7 @@
               <button
                 class="btn btn-primary btn-lg btn-block mb-3"
                 id="eip747WatchButton"
-                disabled
+                enabled
               >
                 Add Token
               </button>
@@ -709,49 +683,49 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="maliciousRawEthButton"
-                  disabled
+                  enabled
                 >
                   Malicious Eth Transfer
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="maliciousERC20TransferButton"
-                  disabled
+                  enabled
                 >
                   Malicious ERC20 Transfer (USDC)
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="maliciousApprovalButton"
-                  disabled
+                  enabled
                 >
                   Malicious ERC20 Approval (BUSD)
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="maliciousSetApprovalForAll"
-                  disabled
+                  enabled
                 >
                   Malicious Set Approval For All
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="maliciousPermit"
-                  disabled
+                  enabled
                 >
                   Malicious Permit
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="maliciousTradeOrder"
-                  disabled
+                  enabled
                 >
                   Malicious Trade Order
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="maliciousSeaport"
-                  disabled
+                  enabled
                 >
                   Malicious Seaport
                 </button>
@@ -773,7 +747,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="getEncryptionKeyButton"
-                  disabled
+                  enabled
                 >
                   Get Encryption Key
                 </button>
@@ -791,7 +765,7 @@
                   <button
                     class="btn btn-primary btn-lg btn-block mb-3"
                     id="encryptButton"
-                    disabled
+                    enabled
                   >
                     Encrypt
                   </button>
@@ -802,7 +776,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="decryptButton"
-                  disabled
+                  enabled
                 >
                   Decrypt
                 </button>
@@ -838,7 +812,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="ethSign"
-                  disabled
+                  enabled
                 >
                   Sign
                 </button>
@@ -861,7 +835,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="personalSign"
-                  disabled
+                  enabled
                 >
                   Sign
                 </button>
@@ -873,7 +847,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="personalSignVerify"
-                  disabled
+                  enabled
                 >
                   Verify
                 </button>
@@ -901,7 +875,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="signTypedData"
-                  disabled
+                  enabled
                 >
                   Sign
                 </button>
@@ -913,7 +887,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="signTypedDataVerify"
-                  disabled
+                  enabled
                 >
                   Verify
                 </button>
@@ -937,7 +911,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="signTypedDataV3"
-                  disabled
+                  enabled
                 >
                   Sign
                 </button>
@@ -950,7 +924,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="signTypedDataV3Verify"
-                  disabled
+                  enabled
                 >
                   Verify
                 </button>
@@ -974,7 +948,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="signTypedDataV4"
-                  disabled
+                  enabled
                 >
                   Sign
                 </button>
@@ -987,7 +961,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="signTypedDataV4Verify"
-                  disabled
+                  enabled
                 >
                   Verify
                 </button>
@@ -1011,7 +985,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="signPermit"
-                  disabled
+                  enabled
                 >
                   Sign
                 </button>
@@ -1027,7 +1001,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="signPermitVerify"
-                  disabled
+                  enabled
                 >
                   Verify
                 </button>
@@ -1051,14 +1025,14 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="siwe"
-                  disabled
+                  enabled
                 >
                 Sign In With Ethereum
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="siweResources"
-                  disabled
+                  enabled
                 >
                 Sign In With Ethereum (w/ Resources)
                 </button>
@@ -1066,7 +1040,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="siweBadDomain"
-                  disabled
+                  enabled
                 >
                 Sign In With Ethereum (Bad Domain)
                 </button>
@@ -1074,7 +1048,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="siweBadAccount"
-                  disabled
+                  enabled
                 >
                 Sign In With Ethereum (Bad Account)
                 </button>
@@ -1082,7 +1056,7 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="siweMalformed"
-                  disabled
+                  enabled
                 >
                 Sign In With Ethereum (Malformed)
                 </button>
@@ -1109,14 +1083,14 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="addEthereumChain"
-                  disabled
+                  enabled
                 >
                   Add Localhost 8546
                 </button>
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="switchEthereumChain"
-                  disabled
+                  enabled
                 >
                   Switch to Localhost 8546
                 </button>
