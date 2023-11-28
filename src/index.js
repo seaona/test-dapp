@@ -1281,7 +1281,6 @@ const initializeFormElements = () => {
     const networkId = parseInt(networkDiv.innerHTML, 10);
     const chainId = parseInt(chainIdDiv.innerHTML, 16) || networkId;
 
-    console.log(chainIdDiv.innerHTML)
     const result = await provider.request({
       method: 'eth_signTypedData_v4',
       params: [
