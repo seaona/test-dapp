@@ -2,8 +2,18 @@ section {
   margin: 20px 0 20px 0;
 }
 
+textarea {
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
 .info-text {
   font-size: 1.1em;
+}
+
+.wrap {
+  white-space: pre-wrap;
 }
 
 .full-width {
